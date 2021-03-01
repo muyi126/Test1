@@ -22,26 +22,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.Row
-
-
-
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Divider
+import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.Divider
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -54,7 +50,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
-
 import com.example.androiddevchallenge.ui.Puppy
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import dev.chrisbanes.accompanist.coil.CoilImage
@@ -75,26 +70,17 @@ class MainActivity : AppCompatActivity() {
                     }
                     composable("des_screen/{des}") { backStackEntry ->
                         backStackEntry.arguments?.getString("des")?.let {
-                            Log.i("XXX", "DesPage${it}")
+                            Log.i("XXX", "DesPage$it")
                             DesPage(
                                 navController = navController,
                                 it.toInt()
                             )
                         }
                     }
-
                 }
             }
         }
     }
-
-
-}
-
-@Composable
-fun ComposeNavigation() {
-
-
 }
 
 @Composable
@@ -121,24 +107,27 @@ fun DesPage(navController: NavController, des: Int) {
             style = MaterialTheme.typography.subtitle1,
             modifier = Modifier
                 .padding(24.dp)
-                .clickable(onClick = {
-                    // this will navigate to second screen
-                    navController.navigate("home")
-                })
+                .clickable(
+                    onClick = {
+                        // this will navigate to second screen
+                        navController.navigate("home")
+                    }
+                )
         )
         Text(
             text = "${loadData.get(des)?.puppyDetail}",
             style = MaterialTheme.typography.body1,
             modifier = Modifier
                 .padding(24.dp)
-                .clickable(onClick = {
-                    // this will navigate to second screen
-                    navController.navigate("home")
-                })
+                .clickable(
+                    onClick = {
+                        // this will navigate to second screen
+                        navController.navigate("home")
+                    }
+                )
         )
     }
 }
-
 
 fun loadData(): Array<Puppy?> {
     var puppys: Array<Puppy?> = emptyArray()
@@ -191,10 +180,8 @@ fun loadData(): Array<Puppy?> {
         )
     )
 
-
     return puppys
 }
-
 
 // Start building your app here!
 @Composable
@@ -204,7 +191,6 @@ fun HomePage(navController: NavController) {
         ImageList(navController)
     }
 }
-
 
 @Composable
 fun ImageList(navController: NavController) {
@@ -218,7 +204,6 @@ fun ImageList(navController: NavController) {
         }
     }
 }
-
 
 @Composable
 fun ImageListItem(it: Puppy, navController: NavController) {
@@ -250,11 +235,9 @@ fun ImageListItem(it: Puppy, navController: NavController) {
                     Spacer(Modifier.height(10.dp))
                 }
             }
-
         }
         PostListDivider()
     }
-
 }
 
 @Composable
@@ -264,7 +247,6 @@ private fun PostListDivider() {
         color = MaterialTheme.colors.onSurface.copy(alpha = 0.08f)
     )
 }
-
 
 @Preview("Dark Theme", widthDp = 360, heightDp = 640)
 @Composable
